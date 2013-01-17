@@ -9,7 +9,7 @@ class Profile_Controller extends Base_Controller{
 		if(!$account_details){
 			return Response::error('404');
 		}
-		return View::make('profile.index')->with('account_details', $account_details);
+		return View::make('profile.profile')->with('account_details', $account_details);
 	}
 }
 

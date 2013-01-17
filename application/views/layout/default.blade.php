@@ -22,11 +22,8 @@
               <li><button id="trigger_cancel" class="btn btn-danger">Cancel</button></li>
               @else
               <li><a href="/">Home</a><li>
-              <li class="divider-vertical"></li>
-              <li><a href="/profile/{{ Auth::user()->id }}"><img id="pic_header" src="{{ URL::base() }}/public/defaults/default.jpg" width="20px"/>{{ Auth::user()->firstname .' ' . Auth::user()->lastname }}</a><li>
-              <li class="divider-vertical"></li>
+              <li><a href="/profile/{{ Auth::user()->id }}"><img id="pic_header" src="{{ URL::base() }}/public/defaults/default.jpg" width="20px"/></a><li>
               <li><a href="/settings">Settings</a><li>
-              <li class="divider-vertical"></li>
               <li><a href="/logout">Log out</a><li>
               @endif
             </ul>

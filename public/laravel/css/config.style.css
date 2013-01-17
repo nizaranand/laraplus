@@ -21,11 +21,11 @@ footer p{
   margin-bottom: -5px;
 }
 #header_right_menu li a{
-	padding: 10px 0px;
+	padding: 10px 10px;
 	font-weight: bold;
 }
 #pic_header{
-	margin-right: 10px;
+	/*margin-right: 10px;*/
 }
 .bubble{
   position: absolute;
