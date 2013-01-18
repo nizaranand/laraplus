@@ -46,7 +46,7 @@
         }else{
           uploading_div.hide();
           share_form_box.removeAttr('style');
-          show_image_holder.html('<img src="'+data.file_location+'" width="300px"/>').show();
+          show_image_holder.html('<img src="'+data.file_location+'"/>').show();
           share_form_controls.prepend('<div id="temp_div"><input type="hidden" name="filename" value="'+data.filename+'" class="removable_input"/><input type="hidden" name="camera" value="'+data.photo_camera_maker+'" class="removable_input"/><input type="hidden" name="exposure" value="'+data.photo_camera_expo+'" class="removable_input"/><input type="hidden" name="date_captured" value="'+data.photo_taken+'" class="removable_input"/><input type="hidden" name="aperture" value="'+data.photo_aperture+'" class="removable_input"/><input type="hidden" name="iso_speed" value="'+data.photo_iso+'" class="removable_input"/><input type="hidden" name="filesize" value="'+data.filesize+'" class="removable_input"/></div>');
           submit_post_button.removeClass('disabled');
         }
