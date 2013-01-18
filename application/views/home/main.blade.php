@@ -265,14 +265,6 @@
         @endif
         @if($ps->post_type == 'photo')
         <?php $pp = PostTypeLoaders::photo_post($ps->owner_id, $ps->ref_post_type_id); ?>
-        <?php
-          $filename = path('public').'/photos/'.sha1($ps->owner_id).'/'.$pp->filename;
-          $size = getimagesize($filename);
-          $width = $size[0];  $height = $size[1]; 
-          $aspect = $height / $width; 
-          if ($aspect >= 1) $image_width = "380px"; 
-          else $image_width = "490px";
-        ?>
         <li class="post_stream_content">
           <img src="{{ URL::base() }}/public/defaults/default.jpg" width="50px" class="user_stream_pic img-rounded"/>
           <div class="bubble"></div>
@@ -298,7 +290,7 @@
               {{ nl2br(Sanitize::purify($pp->photo_caption)) }}
             </div>
             <div class="photo_holder">
-              <img src="{{ URL::base() }}/public/photos/{{ sha1($ps->owner_id) }}/{{ $pp->filename }}" width="{{ $image_width }}"/>
+              <img src="{{ URL::base() }}/public/photos/{{ sha1($ps->owner_id) }}/wall/{{ $pp->filename }}"/>
             </div>
           </div>
           <div class="post_sharing_controls">

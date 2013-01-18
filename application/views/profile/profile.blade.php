@@ -10,6 +10,9 @@
   <div id="message_holder"></div>
 </div>
 
+<div id="profile_holder" class="row">
+
+</div>
 @endsection
 @section('js_scripts')
 

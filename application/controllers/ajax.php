@@ -93,6 +93,8 @@ class Ajax_Controller extends Post_Extension_Controller{
 
   public function post_upload_photo_post(){
     sleep(2);
+    Bundle::start('resizer');
+
     $valid_formats = array("jpg", "png", "gif", "bmp","jpeg");
     $input = Input::all();
     $name = $input['post_photo_file']['name'];
@@ -111,8 +113,26 @@ class Ajax_Controller extends Post_Extension_Controller{
           $extension = File::extension($input['post_photo_file']['name']);
           $directory = path('public').'photos/'.sha1(Auth::user()->id);
           $filename = $input['post_photo_file']['name'];
+
           $upload_success = Input::upload('post_photo_file', $directory, $filename);
-          // $upload_success = true;
+
+          $size = getimagesize($directory.'/'.$filename);
+          $width = $size[0];  $height = $size[1];
+          $target = 490;
+          if ($width > $height) {
+            $percentage = ($target / $width);
+          } else {
+            $percentage = ($target / $height);
+          }
+          
+          $width = round($width * $percentage);
+          $height = round($height * $percentage);
+
+          $dir = $directory.'/wall';
+          if(!file_exists($dir) && !is_dir($dir)){ mkdir($dir, 0777); }
+
+          $success = Resizer::open($directory.'/'.$filename)->resize( $width , $height , 'exact' )->save($directory.'/wall/'.$filename , 90 );
+
           $targetPath = $directory . '/' . $filename;
           if($upload_success){
             if($extension != 'png' && $extension != 'PNG' && $extension != 'gif' && $extension != 'GIF'){
