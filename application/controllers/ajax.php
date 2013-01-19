@@ -151,7 +151,7 @@ class Ajax_Controller extends Post_Extension_Controller{
             }
             $return['filesize'] = $size;
             $return['filename'] = $input['post_photo_file']['name'];
-            $return['file_location'] = URL::base().'/public/photos/'.sha1(Auth::user()->id).'/'.$input['post_photo_file']['name']; 
+            $return['file_location'] = URL::base().'/public/photos/'.sha1(Auth::user()->id).'/wall/'.$input['post_photo_file']['name']; 
           }else{
             $errors[] = 'There\'s something wrong and we\'ve already dispatched our team to fix it.';
           }

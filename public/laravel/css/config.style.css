@@ -148,6 +148,30 @@ footer p{
   background-color: #eeeeee;
   cursor: pointer;
 }
+/*Edit form designs*/
+.form_edit_post_holder{
+  display: none;
+  margin-top: 5px;
+}
+.form_edit_post_holder form.form_edit_post{
+  margin: 0;
+}
+.form_edit_post_holder form.form_edit_post .edit_post_box{
+  height: 62px;
+  width: 445px;
+  font-size: 13px;
+  resize: none;
+  color: #000000;
+  margin: 0;
+  padding-right: 17px;
+  overflow:hidden;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
+.edit_post_controls{
+  margin-top: 10px;
+}
 /*Start of Comment Stream Designs*/
 .post_comments_holder ul{
   list-style: none;

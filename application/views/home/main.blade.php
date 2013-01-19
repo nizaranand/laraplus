@@ -201,8 +201,17 @@
               </div>
 
             </div>
-            <div class="post_content">
+            <div id="post_content_{{ $ps->post_id }}" class="post_content">
               {{ nl2br(Sanitize::purify($sp->status_post)) }}
+            </div>
+            <div id="edit_post_holder_{{ $ps->post_id }}" class="form_edit_post_holder">
+              {{ Form::open('ajax/edit_post', 'POST', array('id'=>'form_edit_post_'.$ps->post_id, 'class'=>'form_edit_post')) }}
+                {{ Form::textarea('edit_post_box', $sp->status_post, array('id'=>'edit_post_box_'.$ps->post_id, 'class'=>'edit_post_box')) }}
+              {{ Form::close() }}
+              <div class="edit_post_controls">
+                <button id="submit_edit_post_{{ $ps->post_id }}" class="btn btn-primary">Save</button>
+                <button id="cancel_edit_post_{{ $ps->post_id }}" class="btn trigger_cancel_post">Cancel</button>
+              </div>
             </div>
           </div>
           <div class="post_sharing_controls">
@@ -316,7 +325,7 @@
                   </div>
                 </div>
 
-                @if(Auth::user()->id == $cs->commenter_id)
+                @if(Auth::user()->id == $cs->ctrigger_cancel_postommenter_id)
                 <div class="edit_comment_holder">
                   {{ Form::open('ajax/edit_comment', 'POST', array('id'=>'edit_comment_form_'.$cs->comment_id, 'class'=>'edit_comment_form')) }}
                     {{ Form::textarea('edit_comment_box', $cs->comment, array('id'=>'edit_comment_box_'.$cs->comment_id, 'class'=>'comment_box edit_comment_box')) }}
@@ -368,6 +377,30 @@
 {{ HTML::script('public/js/jquery_plugins/jquery.form.js') }}
 {{ HTML::script('public/js/bootstrap/bootstrap-dropdown.min.js') }}
 {{ HTML::script('public/js/jquery_plugins/status.update.js') }}
+<script>
+(function(){
+  $(document).on('click', 'button.trigger_cancel_post', function(e){
+    e.preventDefault();
+    var get_id = $(this).attr('id'),
+        split_id = get_id.split('_'),
+        post_id = split_id[3],
+        edit_post_holder = $("#edit_post_holder_"+post_id);
+        post_content = $("#post_content_"+post_id);
+    edit_post_holder.hide();
+    post_content.show();
+  });
+  $(document).on('click', 'a.trigger_edit_post', function(e){
+    e.preventDefault();
+    var get_id = $(this).attr('id'),
+        split_id = get_id.split('_'),
+        post_id = split_id[2],
+        edit_post_holder = $("#edit_post_holder_"+post_id),
+        post_content = $("#post_content_"+post_id);
+    edit_post_holder.show();
+    post_content.hide();
+  });
+})();
+</script>
 <!-- Post Comment Script -->
 <script>
   (function(){
